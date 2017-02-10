@@ -1,96 +1,53 @@
-# Develop a NativeScript plugin now (w/ TypeScript)
+# Nativescript MaterialShowcaseView
+
+A Material Design themed showcaseview (coachmarks) for Nativescript.
+
+This plugin works only on Android devices and it is based on * [MaterialShowcaseView](https://github.com/deano2390/MaterialShowcaseView). Consider checking * [nativescript-coachmarks](https://github.com/nathanwalker/nativescript-coachmarks) if you are looking for an iOS version.
 
 ## Getting started
 
-1. `git clone https://github.com/NathanWalker/nativescript-plugin-seed.git myplugin`
-2. `npm install -g typescript`
-3. `cd myplugin`
-4. `npm run postclone`
-5. `npm run setup`
-6. Get to work.
+To install run
+`npm install nativescript-material-showcaseview`
 
-This seed expands on several things [presented here](http://developer.telerik.com/featured/creating-nativescript-plugins-in-typescript/).
 
 ## Usage
 
-The seed is prepared to allow you to test and try out your plugin via the `demo` folder.
-Additionally it provides a proper `.gitignore` to keep GitHub tidy as well as `.npmignore` to ensure everyone is happy when you publish your plugin via npm.
-
-### Linking to CocoaPod or Android Arsenal plugins
-
-You will want to create these folders and files in the root:
+Import the `NSMaterialShowcaseView` class to your module, then create a new instance of it.
 
 ```
-platforms --
-  ios --
-    Podfile
-  android --
-    include.gradle
+import { NSMaterialShowcaseView } from 'nativescript-material-showcaseview'
+
+export class MyModel {
+	private showcaseView: NSMaterialShowcaseView;
+	constructor() { this.showcaseView = new NSMaterialShowcaseView(); }
+}
 ```
 
-Doing so will open up those native apis to your plugin :)
-
-Take a look at these existing plugins for how that can be done very simply:
-
-* [nativescript-cardview](https://github.com/bradmartin/nativescript-cardview/tree/master/platforms)
-* [nativescript-floatingactionbutton](https://github.com/bradmartin/nativescript-floatingactionbutton/tree/master/platforms)
-
-### Typical development workflow:
-
-1. Make changes to plugin files
-2. Make changes in `demo` that would test those changes out
-3. `npm run demo.ios` or `npm run demo.android`  **(must be run from the root directory)**
-
-Those `demo` tasks are just general helpers. You may want to have more granular control on the device and/or emulator you want to run. For that, you can just run things the manual way:
-
+IShowcaseItem and IShowcaseConfig  interfaces respectively represent a showcase item and the showcase configuration.
 ```
-cd demo
-
-// when developing, to ensure the latest code is built into the demo, it's a guarantee to remove the plugin and add it back
-tns plugin remove nativescript-material-showcaseview
-tns plugin add ..
-
-// manual platform adds
-tns platform add ios
-// and/or
-tns platform add android
+export interface IShowcaseItem {
+    target: any; // the element in your view (e.g a button)
+    dismissText: string; // the text to dismiss the show case
+    contentText: string; // the text explaining the element
+    withRectangleShape: boolean;
+}
 ```
 
-Then use any of the available options from the `tns` command line:
-
-* [Emulate your project](https://github.com/NativeScript/nativescript-cli#emulate-your-project)
-* [Run your project](https://github.com/NativeScript/nativescript-cli#run-your-project)
-* [Full list of commands](https://github.com/NativeScript/nativescript-cli#the-commands)
-
-## Unittesting
-This plugin automatically adds Jasmine-based unittest support to your plugin.
-Open `demo/app/tests/tests.js` and adjust its contents.
-
-You can read more about this topic [here](https://docs.nativescript.org/tooling/testing).
-
-Once you're ready to test your plugin's API execute one of these commands in the plugin root:
-
+An example of item:
 ```
-npm run test.ios
-npm run test.android
+let item : IShowcaseItem = {
+
+	target: this.btn,
+	dismissText: "GOT IT",
+	contentText: "This is the start button",
+	withRectangleShape: false
+};
 ```
 
-## Publish
+Currently the plugin only implements the showcase sequence available on MaterialShowcaseView. In order to create the sequence you should call `this.showcaseView.createSequence(items)`, in which the paramenter **items** represents an array of IShowcaseItem.
 
-When you have everything ready to publish:
+**Note**: if you wish to highlight only one element in your view, then your array must have only one element.
 
-* Bump the version number in `package.json`
-* `npm run build` - **very important** - ensure the latest is built **before** you publish
-* `npm publish`
+`this.showcaseView.startSequence()` initiates the showcase sequence, whilst `this.showcaseView.reset()` resets the sequence so it can be shown again.
 
-## Contributing - Want to make the seed better?
-
-Or at least help keep it up to date with NativeScript releases, which would be excellent.
-
-```
-npm install -g typescript  // if you don't already have it
-git clone https://github.com/NathanWalker/nativescript-plugin-seed
-cd nativescript-plugin-seed
-
-// Improve!
-```
+There is a sample app available here in case you need to see a working example.
