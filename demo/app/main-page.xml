@@ -1,0 +1,8 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" class="page">
+  <StackLayout class="p-20">
+    <StackLayout id="layout">
+      <Button id="btn" text="Start" tap="buttonTap" class="t-20 text-center c-black" textWrap="true"></Button>
+      <Button id="btn2" text="Reset" tap="buttonTap" class="t-20 text-center c-black" textWrap="true"></Button>
+    </StackLayout>
+  </StackLayout>
+</Page>

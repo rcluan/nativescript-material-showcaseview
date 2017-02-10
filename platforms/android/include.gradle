@@ -1,0 +1,22 @@
+//default elements
+android {
+    productFlavors {
+        "nativescript-material-showcaseview" {
+            dimension "nativescriptmaterialshowcaseview"
+        }
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+dependencies {
+
+      def version = project.hasProperty('materialShowcaseViewVersion') ? project.materialShowcaseViewVersion : "1.1.0";
+
+      compile "com.github.deano2390:MaterialShowcaseView:$version"
+}
