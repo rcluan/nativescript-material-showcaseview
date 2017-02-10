@@ -51,3 +51,6 @@ Currently the plugin only implements the showcase sequence available on Material
 `this.showcaseView.startSequence()` initiates the showcase sequence, whilst `this.showcaseView.reset()` resets the sequence so it can be shown again.
 
 There is a sample app available here in case you need to see a working example.
+
+## License
+MIT
