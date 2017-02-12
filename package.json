@@ -1,7 +1,7 @@
 {
   "name": "nativescript-material-showcaseview",
-  "version": "1.0.0",
-  "description": "Your awesome NativeScript plugin.",
+  "version": "1.0.1",
+  "description": "Nativescript plugin for android based on MaterialShowcaseView library https://github.com/deano2390/MaterialShowcaseView.",
   "main": "material-showcaseview",
   "typings": "index.d.ts",
   "nativescript": {
